@@ -19,6 +19,7 @@
     "company": {
       "type": "enumeration",
       "enum": [
+        "all",
         "Luxora",
         "Comfora",
         "Modenza",

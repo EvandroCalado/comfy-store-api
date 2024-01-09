@@ -415,7 +415,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     company: Attribute.Enumeration<
-      ['Luxora', 'Comfora', 'Modenza', 'Homestead', 'Artifex']
+      ['all', 'Luxora', 'Comfora', 'Modenza', 'Homestead', 'Artifex']
     > &
       Attribute.Required;
     description: Attribute.Text &
