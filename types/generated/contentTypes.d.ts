@@ -368,6 +368,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'order';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -378,7 +379,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     orderTotal: Attribute.String & Attribute.Required;
     numItemsInCart: Attribute.Integer & Attribute.Required;
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::order.order',
       'manyToOne',
       'plugin::users-permissions.user'
