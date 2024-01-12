@@ -24,10 +24,6 @@
       "type": "string",
       "required": true
     },
-    "orderTotal": {
-      "type": "string",
-      "required": true
-    },
     "numItemsInCart": {
       "type": "integer",
       "required": true
@@ -37,6 +33,10 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "orders"
+    },
+    "orderTotal": {
+      "type": "float",
+      "required": true
     }
   }
 }

@@ -377,13 +377,13 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     address: Attribute.String & Attribute.Required;
     cartItems: Attribute.JSON & Attribute.Required;
     name: Attribute.String & Attribute.Required;
-    orderTotal: Attribute.String & Attribute.Required;
     numItemsInCart: Attribute.Integer & Attribute.Required;
     user: Attribute.Relation<
       'api::order.order',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    orderTotal: Attribute.Float & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
