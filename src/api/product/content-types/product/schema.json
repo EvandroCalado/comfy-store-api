@@ -69,6 +69,12 @@
     "colors": {
       "type": "json",
       "required": true
+    },
+    "wishlists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "product"
     }
   }
 }

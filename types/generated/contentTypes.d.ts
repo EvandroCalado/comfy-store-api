@@ -435,6 +435,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<false>;
     colors: Attribute.JSON & Attribute.Required;
+    wishlists: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::wishlist.wishlist'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -446,6 +451,46 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWishlistWishlist extends Schema.CollectionType {
+  collectionName: 'wishlists';
+  info: {
+    singularName: 'wishlist';
+    pluralName: 'wishlists';
+    displayName: 'wishlist';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    product: Attribute.Relation<
+      'api::wishlist.wishlist',
+      'manyToOne',
+      'api::product.product'
+    >;
+    user: Attribute.Relation<
+      'api::wishlist.wishlist',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::wishlist.wishlist',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::wishlist.wishlist',
       'oneToOne',
       'admin::user'
     > &
@@ -712,6 +757,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
+    wishlists: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::wishlist.wishlist'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -785,6 +835,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
+      'api::wishlist.wishlist': ApiWishlistWishlist;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
