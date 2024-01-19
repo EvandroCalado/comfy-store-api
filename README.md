@@ -1,34 +1,58 @@
-# Strapi example
+# E-commerce API com Strapi
 
-This example deploys self-hosted version of [Strapi](https://strapi.io/). Internally it uses a PostgreSQL database to store the data.
+Esta API foi desenvolvida utilizando o Strapi, um poderoso sistema de gerenciamento de conteúdo (CMS) que facilita a criação e administração de APIs robustas. A finalidade principal desta API é fornecer funcionalidades essenciais para um sistema de e-commerce, incluindo manipulação de produtos, processamento de pedidos e gestão de listas de desejos.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/strapi?referralCode=milo)
+## Recursos Principais
 
-## ✨ Features
+### 1. Produtos (Products)
 
-- Strapi
-- Postgres
+A API permite a criação, leitura, atualização e exclusão de produtos. Cada produto possui atributos como nome, descrição, preço, e estoque, proporcionando uma base sólida para a gestão do catálogo de produtos.
 
-## 💁‍♀️ How to use
+#### Exemplo de Endpoints:
 
-- Click the Railway button 👆
-- Add the environment variables
-  - If you choose not to add the Cloudinary related environment variables, your media will not be persisted between deploys.
+- `GET /api/products`: Retorna a lista completa de produtos.
+- `GET /api/products/:id`: Retorna os detalhes de um produto específico.
 
-## 💻 Developing locally
+### 2. Pedidos (Orders)
 
-When developing locally this Strapi template will connect to the Postgres server from its public [TCP Proxy](https://docs.railway.app/deploy/exposing-your-app#tcp-proxying)
+A API oferece funcionalidades relacionadas ao processamento de pedidos. Os pedidos contêm informações sobre os produtos selecionados, o cliente, e o status atual do pedido.
 
-- Clone the repository locally
-- Install the dependencies with `yarn install` or `npm install`
-- Install the Railway CLI, instructions for that can be found [here](https://docs.railway.app/develop/cli#installation)
-    - If this is your first time using the CLI make sure to login with `railway login`
-- Within the local repository run `railway link` to link the local repository to the Strapi service on Railway
-- Start Strapi for development with `railway run yarn run develop` or `railway run npm run develop`
-    - This command run Strapi in development mode with the service variables available locally
-- Open your browser to `http://127.0.0.1:1337/admin`
+#### Exemplo de Endpoints:
 
-## 📝 Notes
+- `GET /api/orders`: Retorna a lista de todos os pedidos.
+- `POST /api/orders`: Cria um novo pedido.
+- `DELETE /api/orders/:id`: Remove o status de um pedido existente.
 
-- After your app is deployed, visit the `/admin` endpoint to create your admin user.
-- Railway's filesystem is ephemeral which is why any changes to the filesystem are not persisted between deploys. This is why, this template uses Cloudinary for media storage.
+### 3. Lista de Desejos (Wishlist)
+
+A API inclui recursos para gerenciar listas de desejos dos clientes. Os usuários podem adicionar produtos à lista de desejos para futuras referências.
+
+#### Exemplo de Endpoints:
+
+- `GET /api/wishlists/:userId`: Retorna a lista de desejos de um usuário específico.
+- `POST /api/wishlists/:userId/:productId`: Adiciona um produto à lista de desejos de um usuário.
+- `DELETE /api/wishlists/:wishlistId`: Remove um produto da lista de desejos de um usuário.
+
+## Configuração
+
+1. **Instalação do Strapi:**
+   - Clone este repositório.
+   - Execute `npm install ou yarn install` para instalar as dependências.
+   - Configure o arquivo `.env` conforme necessário.
+
+2. **Configuração do Banco de Dados:**
+   - Configure as credenciais do banco de dados no arquivo `.env`.
+   - Execute `npm run setup` para configurar o banco de dados.
+
+3. **Iniciar o Servidor:**
+   - Execute `npm run develop` para iniciar o servidor Strapi.
+
+Agora, sua API estará disponível para integração com seu front-end de e-commerce.
+
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) ou enviar pull requests para melhorar esta API de e-commerce desenvolvida com Strapi.
+
+## Licença
+
+Este projeto é licenciado sob a [Licença MIT](LICENSE).
